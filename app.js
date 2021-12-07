@@ -1,5 +1,6 @@
-const hamburger = document.querySelector(".hamburger-container");
+const hamburgerBtn = document.querySelector(".hamburger-container");
+const hamburgerLinks = document.querySelector(".hamburger-links")
 
-hamburger.addEventListener("click", () => {
-
+hamburgerBtn.addEventListener("click", () => {
+    hamburgerLinks.classList.toggle("hidden");
 })
