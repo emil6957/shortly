@@ -67,6 +67,12 @@ header {
     text-align: center;
 }
 
+.original-link {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
 .links {
     display: flex;
     flex-direction: column;
@@ -172,6 +178,14 @@ header {
     border-radius: .25rem;
 }
 
+.err-msg {
+    color: var(--red);
+    font-style: italic;
+}
+
+.err-msg:empty {
+    display: none;
+}
 
 .advanced-stats {
     padding: 5rem 1.5rem;
@@ -286,6 +300,7 @@ footer {
     text-decoration: none;
     font-weight: 500;
     width: fit-content;
+    margin: .5rem 0;
 }
 
 .footer-link-group {
@@ -301,6 +316,44 @@ footer {
     margin-top: 2rem;
     gap: 1.5rem;
 }
+
+
+.new-link-card {
+    margin: 2rem 1.5rem 0;
+    padding: .5rem 1rem 1rem;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, .2);
+    border-radius: .5rem;
+    positioN: relative;
+}
+
+.new-link-card::after {
+    content: "";
+    background: rgba(0, 0, 0, .2); 
+    position: absolute;
+    left: 0;
+    top: 60px;
+    height: 2px;
+    width: 100%;
+}
+
+.new-link-card p {
+    font-size: 18px;
+}
+
+.new-link {
+    color: var(--cyan);
+}
+
+.copy-btn {
+    width: 100%;
+    padding: .5rem 0;
+    border-radius: .5rem;
+}
+
+.copied {
+    background: var(--dark-violet);
+}
+
 
 @media only screen and (min-width: 600px) {
     header {
@@ -364,6 +417,8 @@ footer {
     
     .hero-content {
         margin-top: 4.5rem;
+        margin-right: auto;
+        max-width: 500px;
     }
 
     .hero-title {
@@ -405,6 +460,32 @@ footer {
         border-radius: .5rem;
     }
 
+    .new-link-card {
+        display: flex;
+        align-items: center;
+        padding: 1rem 2rem;
+        margin-left: 8rem;
+        margin-right: 8rem;
+    }
+
+    .new-link {
+        margin-left: auto;
+        margin-right: 2rem;
+    }
+
+    .new-link-card::after {
+        display: none;
+    }
+
+    .original-link {
+        margin-right: 4rem;
+    }
+
+    .copy-btn {
+        width: fit-content;
+        padding: 1rem 2rem;
+        margin: 0;
+    }
 
     .advanced-stats {
         padding: 5rem 0 14rem;
@@ -439,7 +520,8 @@ footer {
     .middle::after {
         height: 10px;
         width: 48px;
-        right: -422px;
+        right: -48px;
+        left: unset;
         top: 0;
         bottom: 0;
         margin-top: auto;
@@ -463,6 +545,10 @@ footer {
         align-items: flex-start;
     }
 
+    .footer-link {
+        margin: 0;
+    }
+
     .footer-logo {
         width: 121px;
         height: 31px;
@@ -480,7 +566,6 @@ footer {
     .socials {
         margin: 0;
     }
-
 
     .nav-link:hover {
         color: black;
@@ -504,5 +589,9 @@ footer {
 
     .social-img-link:hover {
         filter: invert(54%) sepia(81%) saturate(262%) hue-rotate(122deg) brightness(134%) contrast(96%);
+    }
+
+    .copy-btn:not(.copied):hover {
+        background: var(--active-state);
     }
 }
