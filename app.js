@@ -47,6 +47,7 @@ shortenLinkBtn.addEventListener("click", async () => {
             body.insertBefore(newLinkCard, advancedStats);
 
             copyBtn.addEventListener("click", () => {
+                navigator.clipboard.writeText(data.result.full_short_link);
                 copyBtn.classList.add("copied");
                 copyBtn.textContent = "Copied!";
             })
