@@ -12,7 +12,6 @@ const shortenLinkBtn = document.querySelector(".shorten-link");
 const advancedStats = document.querySelector(".advanced-stats");
 
 shortenLinkBtn.addEventListener("click", async () => {
-    console.log("test");
     try {
         const response = await fetch(`https://api.shrtco.de/v2/shorten?url=${linkInput.value}`, { mode: "cors" });
         const data = await response.json(); 
@@ -20,11 +19,34 @@ shortenLinkBtn.addEventListener("click", async () => {
         if (data.ok === false) {
             linkInput.style.border = "4px solid var(--red)";
             const errMsg = document.querySelector(".err-msg");
-            if(data.error_code === 1) {
-                errMsg.textContent = "Please add a link"
+            switch(data.error_code) {
+                case 1:
+                    errMsg.textContent = "Please add a URL to shorten";
+                    break;
+                case 2:
+                    errMsg.textContent = "Invalid URL given";
+                    break;
+                case 3:
+                    errMsg.textContent = "Rate limit reached. Wait a second and try again";
+                    break;
+                case 4:
+                    errMsg.textContent = "IP-Address has been blocked for violating shrtcode's terms of service";
+                    break;
+                case 5:
+                    errMsg.textcontent = "shrtcode already taken/in use. Try again";
+                    break;
+                case 6:
+                    errMsg.textContent = "Unknown error";
+                    break;
+                case 10:
+                    errMsg.textContent = "The link you entered is disallowed";
             }
             container.insertBefore(errMsg, shortenLinkBtn);
         } else {
+            const errMsg = document.querySelector(".err-msg");
+            errMsg.textContent="";
+            linkInput.style.border = "";
+
             const newLinkCard = document.createElement("div");
             const newLink = document.createElement("p");
             const originalLink = document.createElement("p");
