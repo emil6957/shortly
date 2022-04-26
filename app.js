@@ -12,6 +12,7 @@ const shortenLinkBtn = document.querySelector(".shorten-link");
 const advancedStats = document.querySelector(".advanced-stats");
 
 shortenLinkBtn.addEventListener("click", async () => {
+    console.log("test");
     try {
         const response = await fetch(`https://api.shrtco.de/v2/shorten?url=${linkInput.value}`, { mode: "cors" });
         const data = await response.json(); 
@@ -30,6 +31,7 @@ shortenLinkBtn.addEventListener("click", async () => {
             const copyBtn = document.createElement("button");
 
             newLinkCard.classList.add("new-link-card");
+            newLinkCard.classList.add("fade-in");
             newLink.classList.add("new-link");
             originalLink.classList.add("original-link");
             copyBtn.classList.add("btn");
