@@ -11,11 +11,10 @@ const linkInput = document.querySelector(".shorten-link-input");
 const shortenLinkBtn = document.querySelector(".shorten-link");
 const advancedStats = document.querySelector(".advanced-stats");
 
-shortenLinkBtn.addEventListener("click", async () => {
+async function shortenLink() {
     try {
         const response = await fetch(`https://api.shrtco.de/v2/shorten?url=${linkInput.value}`, { mode: "cors" });
         const data = await response.json(); 
-        console.log(data);
         if (data.ok === false) {
             linkInput.style.border = "4px solid var(--red)";
             const errMsg = document.querySelector(".err-msg");
@@ -75,7 +74,16 @@ shortenLinkBtn.addEventListener("click", async () => {
             })
         }
     } catch(err) {
-       console.log(err); 
+       console.error(err); 
     }
+}
+
+shortenLinkBtn.addEventListener("click", async () => {
+    shortenLink();
 })
 
+linkInput.addEventListener("keypress", (e) => {
+    if(e.key === "Enter") {
+        shortenLink();
+    }
+})
